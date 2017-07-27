@@ -8,6 +8,7 @@ class CreateListings < ActiveRecord::Migration[5.1]
       t.float :price
       t.integer :bathrooms
       t.string :type
+      t.string :description
       t.references :user, foreign_key: true
 
       t.timestamps
