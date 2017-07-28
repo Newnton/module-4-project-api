@@ -2,7 +2,9 @@ class Api::V1::ListingController < ApplicationController
   before_action :authorize_user!
 
   def create
-    @listing = Listing.create(listing_params, user_id: current_user.id)
+    @listing = Listing.new(listing_params)
+    @listing.user_id = current_user.id
+    @listing.save
     render json: { listing: @listing }
   end
 
@@ -29,6 +31,6 @@ class Api::V1::ListingController < ApplicationController
   private
 
   def listing_params
-    params.permit(:address, :zipcode, :bedrooms, :sqft, :price, :bathrooms, :type, :description)
+    params.require(:listing).permit(:address, :zipcode, :bedrooms, :sqft, :price, :bathrooms, :apt_type, :description)
   end
 end

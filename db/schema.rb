@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170726190932) do
     t.integer "sqft"
     t.float "price"
     t.integer "bathrooms"
-    t.string "type"
+    t.string "apt_type"
     t.string "description"
     t.bigint "user_id"
     t.datetime "created_at", null: false
