@@ -2,9 +2,15 @@ class Api::V1::AuthController < ApplicationController
   before_action :authorize_user!, only: [:show]
 
   def show
+    @listings = SaverListing.all.where(:user_id == params[:id])
+    @listings = @listings.map do |listing|
+      Listing.find(listing.listing_id)
+    end
     render json: {
       id: current_user.id,
-      username: current_user.username
+      username: current_user.username,
+      postedListings: current_user.listings,
+      savedListings: @listings
     }
   end
 
