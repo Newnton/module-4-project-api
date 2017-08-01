@@ -9,13 +9,18 @@ class Api::V1::SavedController < ApplicationController
     end
     render json: {users: @users}
   end
+
   def create
-    @saver_listing = SaverListing.create(saved_params)
-    render json: {saver_listing: @saver_listing}
+    if SaverListing.find_by(listing_id: saved_params, user_id: current_user.id) == nil
+      @saver_listing = SaverListing.create(listing_id: saved_params, user_id: current_user.id)
+      render json: {saver_listing: @saver_listing}
+    else
+      render json: {error: 'already saved to favorites'}
+    end
   end
 
   private
   def saved_params
-    params.permit(:user_id, :listing_id)
+    params.require(:listingId)
   end
 end
