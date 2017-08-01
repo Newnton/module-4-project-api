@@ -9,6 +9,10 @@ class CreateListings < ActiveRecord::Migration[5.1]
       t.integer :bathrooms
       t.string :apt_type
       t.string :description
+      t.string :image_url_1
+      t.string :image_url_2
+      t.string :image_url_3
+
       t.references :user, foreign_key: true
 
       t.timestamps
