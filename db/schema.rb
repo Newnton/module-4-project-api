@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20170726190932) do
     t.integer "bathrooms"
     t.string "apt_type"
     t.string "description"
+    t.string "image_url_1"
+    t.string "image_url_2"
+    t.string "image_url_3"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170726190932) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "email"
+    t.string "current_city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
